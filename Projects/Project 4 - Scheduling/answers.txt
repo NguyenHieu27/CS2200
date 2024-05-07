@@ -1,0 +1,50 @@
+CS 2200 Spring 2024
+Project 4
+
+Name: Hieu Nguyen
+GT Username: 903681705
+
+Problem 6.1 (FCFS Scheduler)
+----------
+
+With 1 CPU -> 70.2 s
+With 2 CPUs -> 39.8 s
+With 4 CPUs -> 37.1 s
+
+There is NO linear relationship between the number of CPU and the total execution time.
+This is because of the non-linear overhead linked with context switching and scheduling.
+We may save more time by getting more processes. Increasing CPU cores cause the overhead to also increase,
+offsetting the tim savings that we got from adding more CPUs. Therefore, as we double the number of 
+processes, we would see less significant decrease in time.
+
+Problem 6.2 (Round-Robin)
+----------
+
+800ms -> 317.1 s
+600ms -> 302.3 s
+400ms -> 291.7 s
+200ms -> 284.4 s
+
+Shorter timeslices -> shorter waiting times.
+For every 200ms reduction in timeslice, we can see an estimated of 15-second reduction, and then when
+we reduce timeslice more, the reduction in waiting time becomes less.
+In practical operating systems, choosing shortest timeslice is not the best choice due to the increased
+frequency of context switching and scheduling overhead.
+
+Problem 6.3 (Preemptive Priority)
+----------
+
+One way that operating systems can mitigate starvation in a priority scheduler is
+by implementing process aging. This measures the time a process spends in the ready queue before they
+are considered for scheduling. Using time to factor in, we would find that one process
+will have such a large time weight compared to innate priority.
+
+Problem 6.4 (The Priority Inversion Problem)
+---------
+
+We can try to add weights to each of the process / sub-process as well. Then, we can multiply the weights altogether to ensure the processes
+might have a possible chance to at least be elevate to medium effective priority.
+
+Alternatively, we can also boost the priority of window manager process over the medium-priority processes temporarily.
+This will ensure that the window manager process gets scheduled ahead of the medium-priority processes. Then,
+the priority of window manager process will return to its first original level.
