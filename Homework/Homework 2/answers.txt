@@ -1,0 +1,25 @@
+CS 2200 Spring 2024
+Homework 2
+
+Name: Hieu Nguyen
+GT Username: pnguyen337
+
+Question 1
+----------
+An alternative way to emulate the instruction JALR is by using LEA and BEQ to create effective
+memory return address and jump to the <target> label address after. JALR's operation involves
+RA = PC and PC = AT, in which the incremented PC is stored into register RA and the PC is loaded
+with the value of register AT, which is the <target> address. The computer will then continues
+execution at the new PC (the description is provided in Appendix A).
+
+For RA = PC, we use LEA $RA, 1 to calculate the new return address as incremented PC + 1 and store
+it into the register RA. We want the return address after executing subrountine to be the line
+after the instruction that would jump to the subrountine, therefore we add 1 to the already
+incremented PC.
+
+For PC = AT, we use BEQ $ZERO, $ZERO, <target> to unconditionally branch to the address of sum of
+incremented PC and the offset20, which is our <target>.
+
+The sequence to accomplish the functionality of JALR:
+	LEA $RA, 1
+	BEQ $ZERO, $ZERO, <target>
